@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Stolen Treasure</string>
+    <string name="facebook_app_id">594059422196609</string>
+    <string name="facebook_client_token">db2a0330c53cd1f5fa024cc323a14088</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
