@@ -224,7 +224,7 @@ class BouncerSurfaceView(context: Context): SurfaceView(context), SurfaceHolder.
             style = Paint.Style.FILL_AND_STROKE
             textAlign = Paint.Align.LEFT
         }
-        canvas.drawText("Game score: $gameScore", 50f, 80f, paint)
+        canvas.drawText("Game score: $gameScore", 50f, 120f, paint)
     }
 
     private fun drawBestScore(canvas: Canvas) {
@@ -235,7 +235,7 @@ class BouncerSurfaceView(context: Context): SurfaceView(context), SurfaceHolder.
             style = Paint.Style.FILL
             textAlign = Paint.Align.RIGHT
         }
-        canvas.drawText("Best score: ${sharedPrefs.getInt("bestScore", 0)}", SCREEN_WIDTH - 100f, 80f, paint)
+        canvas.drawText("Best score: ${sharedPrefs.getInt("bestScore", 0)}", SCREEN_WIDTH - 250f, 120f, paint)
     }
 
     private fun drawStartText(canvas: Canvas) {

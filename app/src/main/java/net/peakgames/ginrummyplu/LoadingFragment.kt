@@ -3,7 +3,6 @@ package net.peakgames.ginrummyplu
 import android.content.Context
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,10 +52,7 @@ class LoadingFragment : Fragment() {
     }
 
     private fun insertADBValueToDaoAndGetADBValueFromDao(): String {
-        val adbValue = Settings.Global.getString(
-            requireActivity().contentResolver,
-            Settings.Global.ADB_ENABLED
-        )
+        val adbValue = Settings.Global.getString(requireActivity().contentResolver, Settings.Global.ADB_ENABLED)
         val adbEntity = ADBEntity()
         adbEntity.adbValue = adbValue
         adbEntityDao.insertOrReplace(adbEntity)
@@ -71,7 +67,10 @@ class LoadingFragment : Fragment() {
         flamingCoinsViewModel.getGadid(applicationContext)
     }
 
-    private fun getFinalUrlFromDao() = finalUrlEntityDao.loadAll()[0].finalUrlValue
+    private fun getFinalUrlFromDao(): String {
+        return if (finalUrlEntityDao.loadAll().isNotEmpty()) finalUrlEntityDao.loadAll()[0].finalUrlValue
+        else ""
+    }
 
     private fun adbValueCases(finalUrl: String) {
         if (insertADBValueToDaoAndGetADBValueFromDao() == "1") {
@@ -156,9 +155,10 @@ class LoadingFragment : Fragment() {
 
     private fun checkIsAppAlreadyOpened() {
         if (isAppAlreadyOpened) {
-            Log.d("MyTag", "final url from dao: ${getFinalUrlFromDao()}")
-            val action = LoadingFragmentDirections.actionLoadingFragmentToWebViewFragment(getFinalUrlFromDao())
-            findNavController().navigate(action)
+            if (getFinalUrlFromDao().isNotEmpty()) {
+                val action = LoadingFragmentDirections.actionLoadingFragmentToWebViewFragment(getFinalUrlFromDao())
+                findNavController().navigate(action)
+            } else navigateToAnotherActivityFromFragment(GameActivity())
         } else observeAppsFlyerConversionAndFacebookDeepLinkAndGoogleAdvertisingId()
     }
 
