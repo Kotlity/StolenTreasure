@@ -77,14 +77,14 @@ class BouncerSurfaceView(context: Context): SurfaceView(context), SurfaceHolder.
 
     private fun addEnemyLeftToList(startTime: Long) {
         if (startTime > taimingBetweenEnemyLeftSpawns) {
-            enemyLeftList?.add(Enemy(BitmapFactory.decodeResource(resources, R.drawable.enemy_left_image), SCREEN_WIDTH + (50..100).random(), bouncer!!.bouncerRectangle().top + 100))
+            enemyLeftList?.add(Enemy(BitmapFactory.decodeResource(resources, R.drawable.enemy_left_image), SCREEN_WIDTH + (50..100).random(), bouncer!!.bouncerPositionY.toInt() + 25))
             startTimeEnemyLeftSpawns = System.nanoTime()
         }
     }
 
     private fun addEnemyRightToList(startTime: Long) {
         if (startTime > taimingBetweenEnemyRightSpawns) {
-            enemyRightList?.add(Enemy(BitmapFactory.decodeResource(resources, R.drawable.enemy_right_image), (-100..-50).random(), bouncer!!.bouncerRectangle().top))
+            enemyRightList?.add(Enemy(BitmapFactory.decodeResource(resources, R.drawable.enemy_right_image), (-100..-50).random(), bouncer!!.bouncerPositionY.toInt() + 25))
             startTimeEnemyRightSpawns = System.nanoTime()
         }
     }
@@ -195,7 +195,6 @@ class BouncerSurfaceView(context: Context): SurfaceView(context), SurfaceHolder.
         super.draw(canvas)
         bouncerBackground!!.drawBouncerBackground(canvas!!)
         bouncer!!.drawBouncer(canvas)
-        bouncerButtons!!.drawBouncerButtons(canvas)
         bulletLeftList?.forEach { bulletLeft ->
             bulletLeft.drawBullet(canvas)
         }
@@ -208,6 +207,7 @@ class BouncerSurfaceView(context: Context): SurfaceView(context), SurfaceHolder.
         enemyRightList?.forEach { enemyRight ->
             enemyRight.drawEnemy(canvas)
         }
+        bouncerButtons!!.drawBouncerButtons(canvas)
         drawScore(canvas)
         drawBestScore(canvas)
         when(gameState) {

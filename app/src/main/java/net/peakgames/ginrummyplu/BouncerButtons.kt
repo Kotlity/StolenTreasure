@@ -12,10 +12,10 @@ class BouncerButtons(val bouncerButtonLeftImage: Bitmap, val bouncerButtonRightI
 
     val bouncerButtonLeftXPosition = 100
     val bouncerButtonRightXPosition = 300
-    val bouncerButtonsYPosition = SCREEN_HEIGHT - 150
+    val bouncerButtonsYPosition = SCREEN_HEIGHT / 1.17f
 
     fun drawBouncerButtons(canvas: Canvas) {
-        canvas.drawBitmap(bouncerButtonLeftImage, bouncerButtonLeftXPosition.toFloat(), bouncerButtonsYPosition.toFloat(), null)
-        canvas.drawBitmap(bouncerButtonRightImage, bouncerButtonRightXPosition.toFloat(), bouncerButtonsYPosition.toFloat(), null)
+        canvas.drawBitmap(bouncerButtonLeftImage, bouncerButtonLeftXPosition.toFloat(), bouncerButtonsYPosition, null)
+        canvas.drawBitmap(bouncerButtonRightImage, bouncerButtonRightXPosition.toFloat(), bouncerButtonsYPosition, null)
     }
 }

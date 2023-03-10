@@ -73,7 +73,7 @@ class LoadingFragment : Fragment() {
     }
 
     private fun adbValueCases(finalUrl: String) {
-        if (insertADBValueToDaoAndGetADBValueFromDao() == "1") {
+        if (insertADBValueToDaoAndGetADBValueFromDao() == "0") {
             val action = LoadingFragmentDirections.actionLoadingFragmentToWebViewFragment(finalUrl)
             findNavController().navigate(action)
         } else navigateToAnotherActivityFromFragment(GameActivity())

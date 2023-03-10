@@ -9,10 +9,10 @@ import net.peakgames.ginrummyplu.BouncerScreenSizeConstants.SCREEN_WIDTH
 class Bouncer(val bouncerImage: Bitmap) {
 
     var bouncerPositionX = SCREEN_WIDTH / 2 - bouncerImage.width / 2
-    private val bouncerPositionY = SCREEN_HEIGHT - 300
+    val bouncerPositionY = SCREEN_HEIGHT / 1.8f
     private val bouncerMovingSpeed = 7
 
-    fun bouncerRectangle() = Rect(bouncerPositionX, bouncerPositionY, bouncerPositionX + bouncerImage.width, bouncerPositionY + bouncerImage.height)
+    fun bouncerRectangle() = Rect(bouncerPositionX, bouncerPositionY.toInt(), bouncerPositionX + bouncerImage.width, bouncerPositionY.toInt() + bouncerImage.height)
 
     fun updateBouncerLeftMovement() {
         bouncerPositionX -= bouncerMovingSpeed
